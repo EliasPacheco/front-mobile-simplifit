@@ -17,7 +17,7 @@ class _IntroScreenState extends State<IntroScreen> {
       title: "Bem-vindo à Simplifit",
       description: "A academia que transforma vidas através do movimento e bem-estar. Aqui você encontra tudo que precisa para alcançar seus objetivos fitness.",
       image: Icons.fitness_center,
-      color: Colors.blue,
+      color: Colors.red,
     ),
     OnboardingPage(
       title: "Vantagens da Simplifit",
@@ -135,7 +135,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 width: _currentPage == index ? 24 : 8,
                 height: 8,
                 decoration: BoxDecoration(
-                  color: _currentPage == index ? Colors.blue : Colors.grey,
+                  color: _currentPage == index ? Colors.red : Colors.grey,
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -164,7 +164,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),

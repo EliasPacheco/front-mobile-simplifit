@@ -51,159 +51,142 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF667eea),
-              Color(0xFF764ba2),
-              Color(0xFFf093fb),
-            ],
-            stops: [0.0, 0.5, 1.0],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              // Header personalizado
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Header personalizado
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Simplifit',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(0, 2),
+                              blurRadius: 4,
+                              color: Colors.black.withOpacity(0.3),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        'Sistema de Gestão',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white.withOpacity(0.9),
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.3),
+                        width: 1,
+                      ),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.logout_rounded, color: Colors.white),
+                      onPressed: () => _handleLogout(context),
+                      tooltip: 'Sair',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            
+            // Conteúdo principal
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Simplifit',
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(0, 2),
-                                blurRadius: 4,
-                                color: Colors.black.withOpacity(0.3),
+                        // Título de boas-vindas
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Bem-vindo!',
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  shadows: [
+                                    Shadow(
+                                      offset: const Offset(0, 2),
+                                      blurRadius: 4,
+                                      color: Colors.black.withOpacity(0.3),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Gerencie sua academia de forma eficiente',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white.withOpacity(0.9),
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ],
                           ),
                         ),
-                        Text(
-                          'Sistema de Gestão',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white.withOpacity(0.9),
-                            fontWeight: FontWeight.w300,
+                        
+                        // Cards de navegação
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                _buildModernCard(
+                                  context: context,
+                                  title: 'Tipos de Usuários',
+                                  subtitle: 'Gerencie os tipos de profissionais da academia',
+                                  icon: Icons.category_rounded,
+                                  color: Colors.red,
+                                  onTap: () => _navigateToScreen(context, const TiposUsuarioScreen()),
+                                ),
+                                const SizedBox(height: 20),
+                                _buildModernCard(
+                                  context: context,
+                                  title: 'Usuários',
+                                  subtitle: 'Cadastre e gerencie todos os usuários',
+                                  icon: Icons.people_rounded,
+                                  color: Colors.blue,
+                                  onTap: () => _navigateToScreen(context, const UsuariosScreen()),
+                                ),
+                                const SizedBox(height: 20),
+                              ],
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Colors.white.withOpacity(0.3),
-                          width: 1,
-                        ),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.logout_rounded, color: Colors.white),
-                        onPressed: () => _handleLogout(context),
-                        tooltip: 'Sair',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
-              // Conteúdo principal
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Título de boas-vindas
-                          Container(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Bem-vindo!',
-                                  style: TextStyle(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        offset: const Offset(0, 2),
-                                        blurRadius: 4,
-                                        color: Colors.black.withOpacity(0.3),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  'Gerencie sua academia de forma eficiente',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white.withOpacity(0.9),
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          
-                          // Cards de navegação
-                          Expanded(
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  _buildModernCard(
-                                    context: context,
-                                    title: 'Tipos de Usuários',
-                                    subtitle: 'Gerencie os tipos de profissionais da academia',
-                                    icon: Icons.category_rounded,
-                                    gradient: const LinearGradient(
-                                      colors: [Color(0xFF4facfe), Color(0xFF00f2fe)],
-                                    ),
-                                    onTap: () => _navigateToScreen(context, const TiposUsuarioScreen()),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  _buildModernCard(
-                                    context: context,
-                                    title: 'Usuários',
-                                    subtitle: 'Cadastre e gerencie todos os usuários',
-                                    icon: Icons.people_rounded,
-                                    gradient: const LinearGradient(
-                                      colors: [Color(0xFF43e97b), Color(0xFF38f9d7)],
-                                    ),
-                                    onTap: () => _navigateToScreen(context, const UsuariosScreen()),
-                                  ),
-                                  const SizedBox(height: 20),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -214,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     required String title,
     required String subtitle,
     required IconData icon,
-    required Gradient gradient,
+    required Color color,
     required VoidCallback onTap,
   }) {
     return Container(
@@ -242,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              gradient: gradient,
+              color: color,
             ),
             child: Stack(
               children: [

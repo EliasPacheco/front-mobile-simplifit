@@ -136,3 +136,7 @@ A aplicação inclui tratamento robusto de erros:
 - **Listagem**: Cards com informações organizadas e ações de edição/exclusão
 - **Formulários**: Modais com validação em tempo real
 - **Feedback**: Snackbars para confirmação de ações e notificação de erros
+
+## Login do Usuário
+
+- **Login e Senha**: admin@admin.com / 123456
